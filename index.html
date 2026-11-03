@@ -687,15 +687,16 @@ function form(){
   <h4>備份與還原</h4>
   <p class="hint">資料存在這個瀏覽器裡。換電腦或清除瀏覽器資料前，請先備份。</p>
   <div class="fl"><button class="gb" id="bk">下載備份檔</button></div>
-  <h4>發佈名片</h4>
-  <p class="hint">編輯資料只存在目前這個瀏覽器，別的裝置看不到。編輯完直接用 QR／分享按鈕：連結內已帶入最新的文字與設定，任何裝置掃描都是新版（免雲端）。若有換圖片（頭像、LOGO、封面），圖片放不進連結，請再按「下載發佈版」上傳取代網站舊檔一次。</p>
   <div class="fl"><button class="gb main" id="pub">下載發佈版 HTML</button></div>
   <label style="margin-top:10px">還原備份<input type="file" accept=".json,application/json" id="rt"></label>`}
   $('#form').innerHTML=h;$('#form').scrollTop=st;
 }
 function walk(path){const k=path.split('.');let o=S;k.slice(0,-1).forEach(x=>o=o[x]);return[o,k.at(-1)]}
 function exportPub(){
+  /* 將完整名片資料（包含 data:image/... 圖片與自訂連結圖示）內嵌到發佈 HTML。
+     GitHub Pages 只需託管這一個 index.html，不需要圖片 API 或外部圖片儲存。 */
   S._ts=Date.now();save();
+  const snapshot=JSON.parse(JSON.stringify(S));
   const d=document.documentElement.cloneNode(true);
   ['style','data-hdr','data-lay','data-av','data-box','data-lnk','data-lyt','data-bgm'].forEach(a=>d.removeAttribute(a));
   d.setAttribute('data-t','cover');
@@ -707,10 +708,15 @@ function exportPub(){
   d.querySelectorAll('link[href*="fonts.googleapis.com/css2"]').forEach(x=>x.remove());
   d.querySelectorAll('#pub-data').forEach(x=>x.remove());
   const ps=document.createElement('script');ps.id='pub-data';
-  ps.textContent='window.__PUB__='+JSON.stringify(S).replace(/</g,'\\u003c')+';';
+  ps.textContent='window.__PUB__='+JSON.stringify(snapshot).replace(/</g,'\\u003c')+';';
   d.querySelector('#js').before(ps);
-  download('index.html','<!DOCTYPE html>\n'+d.outerHTML,'text/html');
-  toast('已下載發佈版，請上傳取代網站上的舊檔',3200);
+  const html='<!DOCTYPE html>\n'+d.outerHTML;
+  /* 發佈前確認主要圖片及自訂圖示確實包含在輸出的 HTML 內。 */
+  const imageFields=['avatar','logo','bg','pbg'];
+  const embedded=imageFields.filter(k=>/^data:image\//.test(snapshot[k]||'')).length
+    +(snapshot.blocks||[]).filter(b=>/^data:image\//.test(b.icon||'')).length;
+  download('index.html',html,'text/html');
+  toast(embedded?'已打包 '+embedded+' 張圖片／圖示，請上傳新版 index.html 到 GitHub Pages':'已下載發佈版 HTML，請上傳取代網站上的舊檔',3600);
 }
 function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
 
