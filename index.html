@@ -48,7 +48,7 @@ h1{font-size:28px;line-height:1.2;font-weight:var(--hw,700);overflow-wrap:anywhe
 [data-hdr=band] .ti{opacity:.92}
 [data-hdr=band] .av{background:var(--acf);color:var(--ac)}
 
-/* 人像背景頭部：照片當首頁上方背景，姓名疊在照片下緣 */
+/* 人像背景頭部 */
 [data-hdr^=photo] .hd{position:relative;overflow:hidden;height:clamp(320px,100vw,480px);border-radius:0 0 28px 28px;color:#fff}
 [data-hdr^=photo] .cv{display:block;position:absolute;inset:0;height:auto;background:var(--ac) center/cover no-repeat;background-position:50% var(--fy,50%)}
 [data-hdr^=photo] .hd::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0,rgba(0,0,0,.34) 40%,transparent 68%);pointer-events:none}
@@ -103,10 +103,10 @@ h1{font-size:28px;line-height:1.2;font-weight:var(--hw,700);overflow-wrap:anywhe
 .ct svg{flex:none;margin-top:3px;color:var(--ax)}
 .ft{display:flex;gap:14px;align-items:center}
 .ft img{max-height:40px;max-width:96px;object-fit:contain}
-/* 背景：頂部光暈／範本背景圖（SVG，隨配色變化；也可上傳自己的圖） */
+/* 背景 */
 [data-bgm=gradient] body{background:radial-gradient(120% 55% at 50% 0,color-mix(in srgb,var(--ac) 36%,transparent),transparent 70%) var(--bg);background-repeat:no-repeat}
 [data-bgm=image] #card{min-height:100dvh;background:var(--pbg,none) center top/var(--pbs,100% auto) no-repeat}
-/* 進場動畫（僅首次載入） */
+
 @keyframes up{from{opacity:0;transform:translateY(12px)}}
 #card.in .secs>*{animation:up .5s cubic-bezier(.2,.7,.2,1) both}
 #card.in .secs>:nth-child(2){animation-delay:.06s}#card.in .secs>:nth-child(3){animation-delay:.12s}#card.in .secs>:nth-child(4){animation-delay:.18s}#card.in .secs>:nth-child(5){animation-delay:.24s}#card.in .secs>:nth-child(n+6){animation-delay:.3s}
@@ -156,7 +156,6 @@ body.editing #bar{display:none}
 label{display:grid;gap:5px;font-size:13px;color:var(--mu);margin-bottom:12px}
 input[type=text],input[type=url],input[type=email],input[type=password],textarea,select{width:100%;background:var(--sf);border:1.5px solid var(--bd);border-radius:12px;padding:11px 12px;font-size:16px;color:var(--fg);outline:none}
 input:focus,textarea:focus,select:focus{border-color:var(--sa)}
-input[type=file]{width:100%;font-size:13px}
 input[type=range]{width:100%;accent-color:var(--sa)}
 input[type=color]{width:100%;height:44px;padding:3px;border:1.5px solid var(--bd);border-radius:12px;background:var(--sf);cursor:pointer}
 textarea{min-height:84px;resize:vertical}
@@ -183,11 +182,10 @@ h4{margin:22px 0 10px;font-size:14px}
 .sw2{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--bd)}
 .cn{flex:1;display:grid;font-weight:600}.cn small{font-size:11px;color:var(--mu);font-weight:500;letter-spacing:.04em}.clr em{font-style:normal;font-size:11px;color:var(--sa)}
 .clr input[type=color]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0}
-.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px 0 4px}.slot{display:flex;flex-direction:column;border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;background:var(--bg)}
-.sth{flex:none;width:100%;height:84px;margin:0;border-radius:0;border:0;border-bottom:1.5px dashed var(--bd);background:var(--sf);display:grid;place-items:center;overflow:hidden;cursor:pointer}
-.sth img{width:100%;height:100%;object-fit:cover}.sth em{font-style:normal;font-size:22px;color:var(--mu)}
-.slot input[type=file]{display:none}.sti{display:grid;gap:3px;min-width:0;padding:8px 10px 10px}.sti b{font-size:14px;color:var(--fg)}.sti small{font-size:11px;color:var(--mu)}.sti .fl{margin-top:3px}
-.gb.up{display:inline-block;margin:0;color:var(--fg);font-size:13px}
+.slots{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px;padding:12px 0 4px}.slot{display:flex;flex-direction:column;border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;background:var(--bg);padding:12px}
+.sth{width:100%;height:140px;border-radius:10px;border:1.5px dashed var(--bd);background:var(--sf);display:grid;place-items:center;overflow:hidden;margin-bottom:8px}
+.sth img{width:100%;height:100%;object-fit:cover}.sth em{font-style:normal;font-size:13px;color:var(--mu)}
+.sti{display:grid;gap:6px;min-width:0}.sti b{font-size:14px;color:var(--fg)}.sti small{font-size:11px;color:var(--mu)}.sti .fl{margin-top:3px}
 .rw{background:var(--bg);border:1px solid var(--bd);border-radius:14px;margin-bottom:8px}.rw.sys{border-style:dashed}
 .rh{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 10px}
 .rt{flex:1;display:flex;align-items:center;gap:10px;min-width:0;background:none;border:0;text-align:left;cursor:pointer;color:var(--fg);padding:4px 0}
@@ -223,7 +221,7 @@ h4:first-child{margin-top:4px}
 .toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translate(-50%,-20px);background:#1c1c1e;color:#fff;padding:10px 18px;border-radius:30px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:40;max-width:90%}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ===== 人像造型頭部（拱形／側邊漸隱／拍立得／圓環） ===== */
+/* 人像造型頭部 */
 [data-hdr^=pt] .cv{display:block;background:var(--ac) center/cover no-repeat;background-position:50% var(--fy,50%)}
 [data-hdr^=pt] .av{display:none}
 [data-hdr^=pt] .who{padding:0;gap:0}
@@ -242,7 +240,6 @@ h4:first-child{margin-top:4px}
 [data-hdr=ptside] .who{position:absolute;left:0;bottom:0;width:58%;z-index:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left;padding:0 0 26px 22px}
 [data-hdr=ptside] h1{font-size:clamp(30px,10vw,42px);line-height:1.08;text-shadow:0 0 22px var(--bg),0 0 8px var(--bg)}
 
-/* ===== 編輯器：版型分類、字體選擇、無障礙 ===== */
 .tcs{display:flex;gap:8px;margin:0 0 12px;overflow-x:auto;padding-bottom:2px}
 .tc{flex:none;border:1.5px solid var(--bd);background:var(--sf);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;white-space:nowrap}
 .tc.on{background:var(--sa);border-color:var(--sa);color:#fff}
@@ -273,8 +270,6 @@ h4:first-child{margin-top:4px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script id="js">
 const KEY='card_studio_v9',PWK=KEY+'_pw';
-/* 安全儲存：手機內建瀏覽器、無痕模式或預覽視窗可能禁用 localStorage，
-   此時改存記憶體，編輯功能仍可使用（關閉頁面後資料不會保留） */
 const store=(()=>{const m={};let ok=false;try{localStorage.setItem('_t','1');localStorage.removeItem('_t');ok=true}catch(e){}
   return{get:k=>{if(ok){try{return localStorage.getItem(k)}catch(e){}}return k in m?m[k]:null},
     set:(k,v)=>{m[k]=v;if(ok){try{localStorage.setItem(k,v)}catch(e){if(e&&/quota/i.test(e.name+e.message))throw e}}}}})();
@@ -297,8 +292,6 @@ const P={
 const ico=(p,s=18)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const TYPES={line:['LINE',P.chat],ig:['Instagram',P.cam],fb:['Facebook',P.users],threads:['Threads',P.at],yt:['YouTube',P.play],linkedin:['LinkedIn',P.brief],x:['X',P.x],github:['GitHub',P.code],tg:['Telegram',P.send],tel:['電話',P.ph],mail:['Email',P.ml],site:['網站',P.gl],other:['連結',P.ln]};
 
-/* ===== 範本內建背景圖（SVG 即時產生，會跟著配色走） =====
-   COVER：封面圖（頭部樣式「封面圖」）　BAND：色塊頭部的紋理　PAGE：整頁背景圖（每個範本各一款） */
 const uri=s=>'data:image/svg+xml,'+encodeURIComponent(s).replace(/['()]/g,ch=>'%'+ch.charCodeAt(0).toString(16).toUpperCase());
 const rnd=seed=>()=>(seed=seed*16807%2147483647)/2147483647;
 const pg=(defs,body,c)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 960" preserveAspectRatio="xMidYMin slice"><defs>${defs}<linearGradient id="fd" x1="0" y1="0" x2="0" y2="1"><stop offset=".7" stop-color="${c.bg}" stop-opacity="0"/><stop offset="1" stop-color="${c.bg}"/></linearGradient></defs>${body}<rect width="480" height="960" fill="url(#fd)"/></svg>`;
@@ -315,7 +308,6 @@ const PAGE={
  clean:c=>pg(`<pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="${c.fg}" stroke-opacity=".07"/></pattern>`,`<rect width="480" height="640" fill="url(#g)"/><circle cx="440" cy="330" r="130" fill="${c.ac}" opacity=".035"/>`,c)
 };
 
-/* 版型參考常見數位名片：商務封面（HiHello 型）、連結樹（Linktree 型）、Bento 磚塊、極簡…… */
 PAGE.forest=PAGE.soft;PAGE.luxury=PAGE.night;PAGE.pastel=PAGE.soft;PAGE.retro=PAGE.mag;PAGE.vivid=PAGE.bento;
 const TPL={
  cover:{n:'商務封面',rad:22,font:'sans',shape:'rounded',p:{bg:'#f3f5f8',sf:'#ffffff',fg:'#101828',ac:'#2f5bea'},s:{hdr:'cover',lay:'left',av:'rounded',box:'shadow',lnk:'solid',lyt:'list',qa:true,bgm:'image',gap:14,avs:92}},
@@ -347,7 +339,6 @@ const base=k=>{const t=TPL[k];return{tpl:k,c:{...t.p},rad:t.rad,font:t.font,shap
 
 const TCATS={pt:['photo','photofull','photocard','photomag','arch','side','pola','ring'],biz:['cover','clean','luxury','tree','night','ocean'],fun:['bento','soft','retro','vivid','pastel','forest','blank']};
 const PH=h=>/^(photo|pt)/.test(h);
-/* ===== 字體：標題與內文可分開選；選到才向 Google Fonts 載入 ===== */
 const SYSF="system-ui,-apple-system,'PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif";
 const FONTS={
  sans:{n:'系統黑體',stack:SYSF},
@@ -362,7 +353,6 @@ const FONTS={
  montserrat:{n:'Montserrat 現代',stack:"'Montserrat','Noto Sans TC',"+SYSF,gf:'Montserrat:wght@500;700;800&family=Noto+Sans+TC:wght@400;500;700'}};
 const FL={};
 function loadFont(k){const f=FONTS[k];if(!f||!f.gf||FL[k])return;FL[k]=1;const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+f.gf+'&display=swap';document.head.appendChild(l)}
-/* 沒上傳照片時，人像頭部顯示的示意剪影 */
 const SIL=c=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.ac}"/><stop offset="1" stop-color="${c.ac}" stop-opacity=".7"/></linearGradient></defs><rect width="400" height="500" fill="url(#g)"/><circle cx="200" cy="190" r="72" fill="#fff" opacity=".34"/><path d="M60 500c0-96 62-150 140-150s140 54 140 150z" fill="#fff" opacity=".28"/></svg>`;
 function miniPt(k){
   const t=TPL[k],p=t.p,s=t.s,rx=s.shape==='pill'?2.7:s.shape==='square'?.6:1.8;
@@ -430,12 +420,11 @@ const mig=o=>{o={...o};
 const load=o=>{o=mig(o);S={...DEF(),...o};delete S.css;if(S.tpl==='mag')S.tpl='retro';if(!TPL[S.tpl])S.tpl='cover';if(!FONTS[S.font])S.font='sans';if(!FONTS[S.bf])S.bf='sans';S.c={...TPL[S.tpl].p,...(o.c||{})};S.al={...DEF().al,...(o.al||{})}};
 try{
   const loc=JSON.parse(store.get(KEY)||store.get('card_studio_v8')||'{}'),pub=window.__PUB__;
-  /* 發佈版內嵌的資料：本機沒有編輯紀錄，或發佈時間比本機儲存更新時，以發佈版為準 */
   load(pub&&(!loc._ts||loc._ts<pub._ts)?pub:loc);
 }catch(e){}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const save=()=>{try{S._ts=Date.now();store.set(KEY,JSON.stringify(S))}catch(e){toast('儲存空間不足，請換較小的圖片')}};
+const save=()=>{try{S._ts=Date.now();store.set(KEY,JSON.stringify(S))}catch(e){toast('儲存失敗')}};
 function toast(m,ms=2200){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),ms)}
 function href(l){const u=(l.url||'').trim();if(!u||u==='#')return'#';if(l.type==='tel')return'tel:'+u;if(l.type==='mail')return'mailto:'+u;return/^https?:\/\//i.test(u)?u:'https://'+u.replace(/^[a-z]+:\/*/i,'')}
 const lum=h=>{const n=parseInt(h.slice(1),16);const c=[n>>16,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
@@ -459,7 +448,6 @@ function colors(){
   r.style.setProperty('--fy',S.fy+'%');
   r.style.setProperty('--gap',S.gap+'px');
   r.style.setProperty('--avs',S.avs+'px');
-  /* 背景圖：自己上傳的優先，否則用範本內建的 */
   const pu=S.pbg||(PAGE[S.tpl]?art('p'+S.tpl+ck,()=>PAGE[S.tpl](c)):'');
   r.style.setProperty('--pbg',pu?`url("${pu}")`:'none');
   r.style.setProperty('--pbs',S.pbg?'cover':'100% auto');
@@ -499,7 +487,7 @@ let cropping=false;
 $('#mx').onclick=()=>{cropping=false;$('#modal').hidden=true};
 $('#modal').onclick=e=>{if(e.target.id==='modal'&&!cropping)$('#modal').hidden=true};
 
-/* ====== 帳號：密碼＋忘記密碼 ====== */
+/* ====== 帳號安全 ====== */
 let unlocked=false;
 async function hash(s){
   const b=new TextEncoder().encode(s);
@@ -511,7 +499,6 @@ const setAcct=o=>store.set(PWK,JSON.stringify(o));
 const newCred=async p=>{const salt=[...crypto.getRandomValues(new Uint8Array(8))].map(x=>x.toString(16).padStart(2,'0')).join('');return{salt,h:await hash(salt+p)}};
 const pwCheck=(p,q)=>{if(p.length<4)throw new Error('密碼至少 4 個字元');if(p!==q)throw new Error('兩次輸入不一致')};
 
-/* 忘記密碼通關字：輸入 Makabacard（不分大小寫）即可重設密碼 */
 const RESET_WORD='makabacard';
 
 const wrap=(title,sub,body)=>`<form id="pf" style="display:grid;gap:10px;text-align:left"><h3 style="text-align:center;font-size:18px">${title}</h3><p class="sub">${sub}</p>${body}</form>`;
@@ -564,9 +551,7 @@ function viewChangePw(){
   },'p0');
 }
 
-
-/* ====== 編輯器（離開即鎖定） ====== */
-/* 手機鍵盤彈出時，編輯區自動放大到鍵盤上方的可見範圍 */
+/* ====== 編輯器 ====== */
 let baseH=0;
 function fitSheet(){
   const sh=$('#sheet'),vv=window.visualViewport,h=vv?vv.height:innerHeight;
@@ -619,11 +604,7 @@ function form(){
   if(tab===2&&acc[2]==='txt')Object.keys(FONTS).forEach(loadFont);
   $('#seg').innerHTML=['內容','版型','設計','帳號'].map((x,i)=>`<button data-tab="${i}" class="${tab===i?'on':''}">${x}</button>`).join('');
   const inp=(l,p,v,t='text')=>`<label>${l}<input type="${t}" data-p="${p}" value="${esc(v)}"></label>`;
-  const img=(l,p,v)=>`<div class="imgf"><label>${l}<input type="file" accept="image/*" data-img="${p}"></label>${v?`<div class="thr"><img class="th" src="${esc(v)}" alt=""><button class="gb" data-crop="${p}">裁切</button><button class="gb" data-rm="${p}">移除圖片</button></div>`:''}</div>`;
   const rng=(l,p,v,mn=0,mx=100)=>`<label>${l}<input type="range" data-p="${p}" min="${mn}" max="${mx}" value="${+v}"></label>`;
-  const col=(l,k)=>`<label>${l}<input type="color" data-c="${k}" value="${S.c[k]}"></label>`;
-  const opt=(l,k,list)=>`<h4>${l}</h4><div class="fl">${list.map(([v,n])=>`<button class="gb${S[k]===v?' on':''}" data-o="${k}|${v}">${n}</button>`).join('')}</div>`;
-  const tg=(l,k)=>`<button class="gb${S[k]?' on':''}" data-tg="${k}">${S[k]?'✓ ':''}${l}</button>`;
   const colr=(l,k)=>`<label class="clr"><span class="sw2" style="background:${S.c[k]}"></span><span class="cn">${l}<small>${S.c[k].toUpperCase()}</small></span><em>點擊更改</em><input type="color" data-c="${k}" value="${S.c[k]}"></label>`;
   const sec=(t,hint)=>`<h4>${t}</h4>${hint?`<p class="hint">${hint}</p>`:''}`;
   const sl=t=>`<p class="sl">${t}</p>`;
@@ -631,7 +612,10 @@ function form(){
   const photo=PH(S.hdr),fixLay=/^pt/.test(S.hdr);
   const pick=(g,k,list,cols=3)=>`<div class="chs c${cols}">${list.map(([v,n])=>`<button class="ch${S[k]===v?' on':''}" data-o="${k}|${v}">${svgi(g,v)}<span>${n}</span></button>`).join('')}</div>`;
   const ac=(id,icon,title,sum,body)=>{const o=acc[tab]===id;return `<section class="ac${o?' open':''}"><button class="ach" data-ac="${tab}:${id}"><span class="aci">${icon}</span><span class="act"><b>${title}</b><small>${esc(sum)}</small></span><i class="chev"></i></button>${o?`<div class="acb">${body}</div>`:''}</section>`};
-  const slot=(l,p,v,hint)=>`<div class="slot"><label class="sth">${v?`<img src="${esc(v)}" alt="">`:'<em>＋</em>'}<input type="file" accept="image/*" data-img="${p}"></label><div class="sti"><b>${l}</b><small>${hint}</small><span class="fl"><label class="gb up">${v?'更換':'上傳'}<input type="file" accept="image/*" data-img="${p}"></label>${v?`<button class="gb" data-crop="${p}">裁切</button><button class="gb del" data-rm="${p}">移除</button>`:''}</span></div></div>`;
+  
+  /* ===== 圖片網址輸入與預覽框 ===== */
+  const slot=(l,p,v,hint)=>`<div class="slot"><div class="sth">${v?`<img src="${esc(v)}" alt="">`:'<em>尚未設定圖片網址</em>'}</div><div class="sti"><b>${l}</b><small>${hint}</small><input type="url" placeholder="貼上圖片網址 https://..." data-p="${p}" value="${esc(v)}"><span class="fl">${v?`<button class="gb" data-crop="${p}">裁切</button><button class="gb del" data-rm="${p}">移除圖片</button>`:''}</span></div></div>`;
+
   const LB={hdr:{none:'無頭部',cover:'封面圖',band:'色塊',photo:'照片背景',photoc:'照片卡片',photofull:'滿版照片',ptarch:'拱形人像',ptside:'側邊人像',ptpola:'拍立得',ptring:'圓環人像'},lay:{left:'靠左',center:'置中',right:'靠右'},av:{circle:'圓形',rounded:'圓角',square:'方形',blob:'水滴'},bgm:{solid:'純色',gradient:'光暈',image:'背景圖'},font:{sans:'黑體',serif:'明體'},lyt:{list:'條列',grid:'磚塊'},lnk:{solid:'淺底',fill:'填滿',outline:'線框',glass:'玻璃'},shape:{rounded:'圓角',pill:'膠囊',square:'方角'},box:{solid:'實心',outline:'線框',flat:'無框',glass:'玻璃',shadow:'陰影'}};
   const mv=i=>`<button class="mb" data-bm="${i},-1"${i===0?' disabled':''} aria-label="上移">↑</button><button class="mb" data-bm="${i},1"${i===S.blocks.length-1?' disabled':''} aria-label="下移">↓</button>`;
   const rowB=(b,i)=>{
@@ -639,14 +623,14 @@ function form(){
     if(sysM)return `<div class="rw sys"><div class="rh"><span class="ri">${sysM[0]}</span><span class="rt2"><b>${sysM[1]}</b><small>${sysM[3]}</small></span><button class="gb sw3${S[sysM[2]]?' on':''}" data-tg="${sysM[2]}">${S[sysM[2]]?'顯示':'隱藏'}</button><span class="mvs">${mv(i)}</span></div></div>`;
     const x=xb===i,isL=b.k==='link',nm=isL?(b.label||(TYPES[b.type]||TYPES.other)[0]):(b.title||'圖文區塊'),sm=isL?(b.url||'尚未填網址'):(b.body||'').replace(/\n/g,' ').slice(0,18);
     const ic=isL?ico((TYPES[b.type]||TYPES.other)[1],17):'文';
-    return `<div class="rw${x?' x':''}"><div class="rh"><button class="rt" data-bx="${i}"><span class="ri">${ic}</span><span class="rt2"><b>${esc(nm)}</b><small>${esc(sm)}</small></span><i class="chev"></i></button><span class="mvs">${mv(i)}</span></div>${x?`<div class="rb">${isL?`<label>類型<select data-p="blocks.${i}.type">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}"${b.type===k?' selected':''}>${v[0]}</option>`).join('')}</select></label>${inp('名稱',`blocks.${i}.label`,b.label)}${inp('網址／號碼',`blocks.${i}.url`,b.url)}${img('自訂圖示',`blocks.${i}.icon`,b.icon)}`:`${inp('標題',`blocks.${i}.title`,b.title)}<label>內容<textarea data-p="blocks.${i}.body">${esc(b.body)}</textarea></label>`}<div class="fl"><button class="gb" data-bc="${i}">複製</button><button class="gb del" data-bd="${i}">刪除</button></div></div>`:''}</div>`;
+    return `<div class="rw${x?' x':''}"><div class="rh"><button class="rt" data-bx="${i}"><span class="ri">${ic}</span><span class="rt2"><b>${esc(nm)}</b><small>${esc(sm)}</small></span><i class="chev"></i></button><span class="mvs">${mv(i)}</span></div>${x?`<div class="rb">${isL?`<label>類型<select data-p="blocks.${i}.type">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}"${b.type===k?' selected':''}>${v[0]}</option>`).join('')}</select></label>${inp('名稱',`blocks.${i}.label`,b.label)}${inp('網址／號碼',`blocks.${i}.url`,b.url)}<label>自訂圖示網址<input type="url" placeholder="貼上圖示網址 https://..." data-p="blocks.${i}.icon" value="${esc(b.icon)}"></label>`:`${inp('標題',`blocks.${i}.title`,b.title)}<label>內容<textarea data-p="blocks.${i}.body">${esc(b.body)}</textarea></label>`}<div class="fl"><button class="gb" data-bc="${i}">複製</button><button class="gb del" data-bd="${i}">刪除</button></div></div>`:''}</div>`;
   };
   const AL3=[['left','靠左'],['center','置中'],['right','靠右']],ALN={left:'靠左',center:'置中',right:'靠右'};
   const alp=(k,l)=>`${sl(l)}<div class="chs c3">${AL3.map(([v,n])=>`<button class="ch${(k==='all'?Object.values(S.al).every(x=>x===v):S.al[k]===v)?' on':''}" data-al="${k}|${v}">${svgi('al',v)}<span>${n}</span></button>`).join('')}</div>`;
   let h='';
   if(tab===0){
-    const brandSum=[S.avatar&&'頭像',S.logo&&'LOGO',S.bg&&'封面',S.pbg&&'背景圖'].filter(Boolean).join('・')||'尚未上傳圖片';
-    h=ac('brand','🖼️','品牌形象',brandSum,`<div class="slots">${slot('頭像／人像照','avatar',S.avatar,'人像版型的主照片')}${slot('品牌 LOGO','logo',S.logo,'顯示在名片頁尾')}${slot('封面圖','bg',S.bg,'封面圖／色塊頭部使用')}${slot('頁面背景圖','pbg',S.pbg,'選填，鋪滿整個頁面')}</div>
+    const brandSum=[S.avatar&&'頭像',S.logo&&'LOGO',S.bg&&'封面',S.pbg&&'背景圖'].filter(Boolean).join('・')||'尚未設定圖片';
+    h=ac('brand','🖼️','品牌形象',brandSum,`<div class="slots">${slot('頭像／人像照','avatar',S.avatar,'請貼上公開的圖片網址')}${slot('品牌 LOGO','logo',S.logo,'顯示在名片頁尾')}${slot('封面圖','bg',S.bg,'封面圖／色塊頭部使用')}${slot('頁面背景圖','pbg',S.pbg,'選填，鋪滿整個頁面')}</div>
     ${S.avatar?rng('頭像上下位置','ay',S.ay):''}${(photo&&(S.avatar||S.bg))||(!photo&&S.bg&&/^(cover|band)$/.test(S.hdr))?rng(photo?'照片上下位置（調整臉的位置）':'封面上下位置','fy',S.fy):''}`)
     +ac('info','📝','基本資料',[S.name,S.title].filter(Boolean).join(' · ')||'尚未填寫',`${inp('姓名','name',S.name)}${inp('職稱','title',S.title)}${inp('公司／品牌','company',S.company)}${inp('一句話簡介','tag',S.tag)}<label>個人簡介<textarea data-p="bio">${esc(S.bio)}</textarea></label>`)
     +ac('contact','📞','聯絡資訊',[S.phone,S.email,S.site].filter(Boolean).join(' · ')||'尚未填寫',`${inp('電話','phone',S.phone)}${inp('Email','email',S.email)}${inp('地址','addr',S.addr)}${inp('統一編號','taxId',S.taxId)}${inp('網站','site',S.site,'url')}`)
@@ -655,22 +639,22 @@ function form(){
   }
   else if(tab===1){
     const TC={all:'全部',pt:'人像',biz:'商務',fun:'創意'},lst=tcat==='all'?[...TCATS.pt,...TCATS.biz,...TCATS.fun]:TCATS[tcat];
-    h=`${sec('版型','套用後會保留你的文字內容。人像版型請到「內容」上傳照片。')}
+    h=`${sec('版型','套用後會保留你的文字內容。人像版型請到「內容」設定照片網址。')}
   <div class="tcs">${Object.entries(TC).map(([k,n])=>`<button class="tc${tcat===k?' on':''}" data-tc="${k}" aria-pressed="${tcat===k}">${n}</button>`).join('')}</div>
   <div class="tp">${lst.map(k=>`<button data-tpl="${k}" aria-pressed="${S.tpl===k}" class="${S.tpl===k?'on':''}">${mini(k)}${TPL[k].n}</button>`).join('')}</div>
-  ${PH(S.hdr)&&!S.avatar?`<div class="nt"><b>還沒有人像照片</b><span>目前顯示的是示意剪影，上傳後會自動套進這個版型。</span><button class="gb main" data-go="0:brand">上傳我的照片</button></div>`:''}
+  ${PH(S.hdr)&&!S.avatar?`<div class="nt"><b>還沒有人像照片</b><span>目前顯示的是示意剪影，貼上照片網址後會自動套進這個版型。</span><button class="gb main" data-go="0:brand">設定照片網址</button></div>`:''}
   ${sec('配色方案','一鍵套用整組顏色；想單獨改某一項，到「設計」分頁對應物件旁邊調整。')}<div class="sw">${PRESETS.map((p,i)=>`<button data-pre="${i}" class="${p[0]===S.c.bg&&p[1]===S.c.sf&&p[2]===S.c.fg&&p[3]===S.c.ac?'on':''}" aria-label="配色 ${i+1}" style="background:linear-gradient(135deg,${p[0]} 50%,${p[3]} 50%)"></button>`).join('')}</div>`;
   }
   else if(tab===2){
     h=ac('hdr','👤','頭部',`${LB.hdr[S.hdr]}${fixLay?'':' · '+LB.lay[S.lay]}${photo?'':' · '+LB.av[S.av]+'頭像'}`,
       `${sl('一般頭部')}${pick('hdr','hdr',[['none','無'],['cover','封面圖'],['band','色塊']])}${sl('人像頭部')}${pick('hdr','hdr',[['photo','照片背景'],['photoc','照片卡片'],['photofull','滿版照片'],['ptarch','拱形人像'],['ptside','側邊人像'],['ptpola','拍立得'],['ptring','圓環人像']])}
-      ${photo&&!S.avatar?`<p class="hint" style="margin-top:10px;color:#c2410c">要用你的人像：請先上傳照片。</p><button class="gb" data-go="0:brand">到「內容」上傳照片</button>`:''}
+      ${photo&&!S.avatar?`<p class="hint" style="margin-top:10px;color:#c2410c">要用你的人像：請先設定照片網址。</p><button class="gb" data-go="0:brand">到「內容」設定照片網址</button>`:''}
       ${fixLay?'':`${sl('文字排版')}${pick('lay','lay',[['left','靠左'],['center','置中'],['right','靠右']])}`}
       ${photo?'':`${sl('頭像形狀')}${pick('av','av',[['circle','圓形'],['rounded','圓角'],['square','方形'],['blob','水滴']],4)}${rng('頭像大小','avs',S.avs,56,140)}`}`)
     +ac('bg','🌄','頁面背景',`${LB.bgm[S.bgm]} · ${S.c.bg.toUpperCase()}`,
       `${sl('背景樣式')}${pick('bgm','bgm',[['solid','純色'],['gradient','頂部光暈'],['image','背景圖']])}
       ${sl('背景顏色')}${colr('背景色','bg')}
-      <p class="hint" style="margin:10px 0 8px">背景圖預設用範本內建圖案，會跟著配色變化。${S.pbg?'目前使用你上傳的圖。':''}</p><button class="gb" data-go="0:brand">${S.pbg?'更換':'上傳'}自訂背景圖</button>`)
+      <p class="hint" style="margin:10px 0 8px">背景圖預設用範本內建圖案，會跟著配色變化。${S.pbg?'目前使用你設定的圖案網址。':''}</p><button class="gb" data-go="0:brand">${S.pbg?'更換':'設定'}自訂背景圖網址</button>`)
     +ac('txt','🔤','文字',`標題 ${FONTS[S.font].n}・內文 ${FONTS[S.bf].n}`,
       `${sl('標題字體（姓名、區塊標題）')}${fpick('font')}${sl('內文字體')}${fpick('bf')}<p class="hint" style="margin-top:10px">字體會在選用時才載入，需連網；離線時自動改用系統字體。</p>${sl('文字顏色')}${colr('文字色','fg')}`)
     +ac('lnk','🔗','連結與按鈕',`${LB.lyt[S.lyt]} · ${LB.lnk[S.lnk]} · ${LB.shape[S.shape]}`,
@@ -687,14 +671,13 @@ function form(){
   <h4>備份與還原</h4>
   <p class="hint">資料存在這個瀏覽器裡。換電腦或清除瀏覽器資料前，請先備份。</p>
   <div class="fl"><button class="gb" id="bk">下載備份檔</button></div>
-  <div class="fl"><button class="gb main" id="pub">下載發佈版 HTML</button></div>
+  
   <label style="margin-top:10px">還原備份<input type="file" accept=".json,application/json" id="rt"></label>`}
   $('#form').innerHTML=h;$('#form').scrollTop=st;
 }
+
 function walk(path){const k=path.split('.');let o=S;k.slice(0,-1).forEach(x=>o=o[x]);return[o,k.at(-1)]}
 function exportPub(){
-  /* 將完整名片資料（包含 data:image/... 圖片與自訂連結圖示）內嵌到發佈 HTML。
-     GitHub Pages 只需託管這一個 index.html，不需要圖片 API 或外部圖片儲存。 */
   S._ts=Date.now();save();
   const snapshot=JSON.parse(JSON.stringify(S));
   const d=document.documentElement.cloneNode(true);
@@ -711,16 +694,12 @@ function exportPub(){
   ps.textContent='window.__PUB__='+JSON.stringify(snapshot).replace(/</g,'\\u003c')+';';
   d.querySelector('#js').before(ps);
   const html='<!DOCTYPE html>\n'+d.outerHTML;
-  /* 發佈前確認主要圖片及自訂圖示確實包含在輸出的 HTML 內。 */
-  const imageFields=['avatar','logo','bg','pbg'];
-  const embedded=imageFields.filter(k=>/^data:image\//.test(snapshot[k]||'')).length
-    +(snapshot.blocks||[]).filter(b=>/^data:image\//.test(b.icon||'')).length;
   download('index.html',html,'text/html');
-  toast(embedded?'已打包 '+embedded+' 張圖片／圖示，請上傳新版 index.html 到 GitHub Pages':'已下載發佈版 HTML，請上傳取代網站上的舊檔',3600);
+  toast('已下載發佈版 HTML，請上傳取代網站上的舊檔',3600);
 }
 function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
 
-/* ===== 圖片裁切／縮放：拖曳移動、滑桿／雙指／滾輪縮放、可選比例 ===== */
+/* ===== 圖片裁切 ===== */
 const CR=[['1:1',1],['4:5',.8],['3:4',.75],['9:16',.5625],['3:2',1.5],['16:9',1.7778],['2:1',2],['原比例',0]];
 function cropDefault(key){
   if(key==='logo')return 0;
@@ -731,7 +710,8 @@ function cropDefault(key){
 }
 function openCrop(key,src){
   const im=new Image();
-  im.onerror=()=>toast('無法讀取這張圖片');
+  im.crossOrigin='anonymous';
+  im.onerror=()=>toast('無法讀取這張圖片網址（可能是跨域限制或無效連結）');
   im.onload=()=>{
     const iw=im.naturalWidth,ih=im.naturalHeight;
     const isIcon=key.includes('icon'),png=key==='logo'||isIcon;
@@ -779,16 +759,19 @@ function openCrop(key,src){
     st.onwheel=e=>{e.preventDefault();const r=st.getBoundingClientRect();setZ(z*(e.deltaY<0?1.08:1/1.08),e.clientX-r.left,e.clientY-r.top)};
     $('#cno').onclick=()=>{cropping=false;$('#modal').hidden=true};
     $('#cok').onclick=()=>{
-      const sw=W/s,sh=H/s,sx=Math.max(0,Math.min(iw-sw,-ox/s)),sy=Math.max(0,Math.min(ih-sh,-oy/s));
-      const sc=Math.min(1,mxs/Math.max(sw,sh)),cw=Math.max(1,Math.round(sw*sc)),ch=Math.max(1,Math.round(sh*sc));
-      const cv=document.createElement('canvas');cv.width=cw;cv.height=ch;
-      const cx=cv.getContext('2d');
-      if(!png){cx.fillStyle='#fff';cx.fillRect(0,0,cw,ch)}
-      cx.drawImage(im,sx,sy,sw,sh,0,0,cw,ch);
-      let out=png?cv.toDataURL('image/png'):cv.toDataURL('image/jpeg',.85);
-      if(png&&out.length>350000){cx.globalCompositeOperation='destination-over';cx.fillStyle='#fff';cx.fillRect(0,0,cw,ch);out=cv.toDataURL('image/jpeg',.85)}
-      const[o,k]=walk(key);o[k]=out;
-      if(key==='pbg')S.bgm='image';
+      try {
+        const sw=W/s,sh=H/s,sx=Math.max(0,Math.min(iw-sw,-ox/s)),sy=Math.max(0,Math.min(ih-sh,-oy/s));
+        const sc=Math.min(1,mxs/Math.max(sw,sh)),cw=Math.max(1,Math.round(sw*sc)),ch=Math.max(1,Math.round(sh*sc));
+        const cv=document.createElement('canvas');cv.width=cw;cv.height=ch;
+        const cx=cv.getContext('2d');
+        if(!png){cx.fillStyle='#fff';cx.fillRect(0,0,cw,ch)}
+        cx.drawImage(im,sx,sy,sw,sh,0,0,cw,ch);
+        let out=png?cv.toDataURL('image/png'):cv.toDataURL('image/jpeg',.85);
+        const[o,k]=walk(key);o[k]=out;
+        if(key==='pbg')S.bgm='image';
+      } catch(e) {
+        toast('圖片來源不允許跨域裁切，已直接使用原網址');
+      }
       cropping=false;$('#modal').hidden=true;save();form();render();
     };
   };
@@ -802,13 +785,22 @@ document.addEventListener('input',e=>{
     fr.readAsText(el.files[0]);return;
   }
   if(el.dataset.c){S.c[el.dataset.c]=el.value;save();render();const r=el.closest('.clr');if(r){r.querySelector('.sw2').style.background=el.value;r.querySelector('small').textContent=el.value.toUpperCase()}return}
-  if(el.dataset.p){const[o,k]=walk(el.dataset.p);o[k]=el.type==='range'?+el.value:el.value;save();render();return}
-  if(el.dataset.img&&el.files[0]){
-    const key=el.dataset.img,fr=new FileReader();
-    fr.onload=()=>{el.value='';openCrop(key,fr.result)};
-    fr.readAsDataURL(el.files[0]);
+  if(el.dataset.p){
+    const[o,k]=walk(el.dataset.p);
+    o[k]=el.type==='range'?+el.value:el.value;
+    if(el.type==='url'&&el.value.trim()){if(el.dataset.p==='pbg')S.bgm='image';}
+    save();render();
+    if(el.type==='url'){
+      const slotEl=el.closest('.slot');
+      if(slotEl){
+        const sth=slotEl.querySelector('.sth');
+        if(sth)sth.innerHTML=el.value.trim()?`<img src="${esc(el.value)}" alt="">`:'<em>尚未設定圖片網址</em>';
+      }
+    }
+    return;
   }
 });
+
 $('#sheet').addEventListener('click',async e=>{
   const b=e.target.closest('button');if(!b)return;const d=b.dataset;
   if(d.tab!==undefined){tab=+d.tab;form();$('#form').scrollTop=0;return}
@@ -820,7 +812,7 @@ $('#sheet').addEventListener('click',async e=>{
   if(b.id==='cp'){viewChangePw();return}
   if(b.id==='pub'){exportPub();return}
   if(d.crop){const[o,k]=walk(d.crop);if(o[k])openCrop(d.crop,o[k]);return}
-    if(d.tpl){const kp=S.pbg;Object.assign(S,base(d.tpl));S.pbg=kp;if(kp)S.bgm='image';toast('已套用「'+TPL[d.tpl].n+'」'+(PH(S.hdr)&&!S.avatar?'，上傳照片就會看到人像':''),2600)}
+  if(d.tpl){const kp=S.pbg;Object.assign(S,base(d.tpl));S.pbg=kp;if(kp)S.bgm='image';toast('已套用「'+TPL[d.tpl].n+'」'+(PH(S.hdr)&&!S.avatar?'，貼上照片網址就會看到人像':''),2600)}
   if(d.pre){const p=PRESETS[+d.pre];S.c={bg:p[0],sf:p[1],fg:p[2],ac:p[3]}}
   if(d.o){const[k,v]=d.o.split('|');S[k]=v}
   if(d.tg)S[d.tg]=!S[d.tg];
@@ -836,15 +828,12 @@ $('#sheet').addEventListener('click',async e=>{
   save();form();render();
 });
 
-/* ===== 免雲端同步：把文字資料壓縮後放進網址 #d=…，QR／分享連結帶著最新內容，任何裝置開啟即是新版 =====
-   圖片太大放不進網址，仍以「下載發佈版 HTML」上傳的版本為準；文字、顏色、版型、連結等全部即時更新 */
+/* ===== 網址資料打包 ===== */
 const IMGK=['avatar','logo','bg','pbg'];
 const b64u=u8=>{let s='';u8.forEach(c=>s+=String.fromCharCode(c));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
 const unb64u=t=>Uint8Array.from(atob(t.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
 async function packData(){
   const o=JSON.parse(JSON.stringify(S));delete o._ts;
-  IMGK.forEach(k=>{if(/^data:/.test(o[k]||''))delete o[k]});
-  (o.blocks||[]).forEach(b=>{if(/^data:/.test(b.icon||''))b.icon=''});
   const cs=new Blob([new TextEncoder().encode(JSON.stringify(o))]).stream().pipeThrough(new CompressionStream('deflate-raw'));
   return b64u(new Uint8Array(await new Response(cs).arrayBuffer()));
 }
@@ -853,13 +842,12 @@ async function unpackData(t){
   return JSON.parse(await new Response(ds).text());
 }
 async function shareUrl(){return location.href.split('#')[0]+'#d='+await packData()}
-/* 開啟帶資料的網址：用網址內的內容覆蓋畫面（不寫入本機，避免舊資料卡住） */
+
 (async()=>{
   const m=location.hash.match(/^#d=([\w-]+)/);if(!m)return;
   try{
-    const o=await unpackData(m[1]),keep={};IMGK.forEach(k=>keep[k]=S[k]);const ob=S.blocks||[];
-    load(o);IMGK.forEach(k=>{if(!o[k])S[k]=keep[k]});
-    S.blocks.forEach((b,i)=>{if(b.k==='link'&&!b.icon&&ob[i]&&ob[i].icon)b.icon=ob[i].icon});
+    const o=await unpackData(m[1]);
+    load(o);
     render();
   }catch(e){}
 })();
@@ -877,7 +865,7 @@ $('#qr').onclick=async()=>{
     const u=await shareUrl();
     new QRCode($('#qrb'),{text:u,width:280,height:280,correctLevel:QRCode.CorrectLevel.L});
   }catch(e){
-    try{new QRCode($('#qrb'),{text:location.href.split('#')[0],width:220,height:220});$('#qrb').insertAdjacentHTML('afterend','<p style="font-size:12px;color:#c2410c">內容太多，QR 無法帶入最新資料，已改為一般網址。請精簡簡介文字，或下載發佈版上傳。</p>')}
+    try{new QRCode($('#qrb'),{text:location.href.split('#')[0],width:220,height:220});$('#qrb').insertAdjacentHTML('afterend','<p style="font-size:12px;color:#c2410c">網址長度超出限制，已改為一般網址。</p>')}
     catch(_){$('#qrb').textContent='QR Code 載入失敗'}
   }
 };
