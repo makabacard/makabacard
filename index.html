@@ -856,7 +856,10 @@ async function unpackData(t){
   const ds=new Blob([unb64u(t)]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
   return JSON.parse(await new Response(ds).text());
 }
-async function shareUrl(){return location.href.split('#')[0]+'#d='+await packData()}
+const cleanUrl=()=>location.href.split('#')[0];
+const hasPub=()=>!!window.__PUB__;
+const unpublished=()=>hasPub()&&S._ts&&S._ts>(window.__PUB__._ts||0);
+async function shareUrl(){return hasPub()?cleanUrl():cleanUrl()+'#d='+await packData()}
 
 (async()=>{
   const m=location.hash.match(/^#d=([\w-]+)/);if(!m)return;
@@ -871,6 +874,7 @@ async function shareUrl(){return location.href.split('#')[0]+'#d='+await packDat
 $('#sh').onclick=async()=>{
   if(location.protocol==='file:'){toast('請先把名片放到網站上，再分享連結');return}
   let u;try{u=await shareUrl()}catch(e){toast('分享資料打包失敗，請改用「下載發佈版 HTML」分享');return}
+  if(unpublished()){toast('你有尚未發佈的修改：請先按「下載發佈版 HTML」並上傳覆蓋 index.html，再分享',4200);return}
   if(u.length>180000){toast('圖片資料太大，請先裁切／縮小圖片後再分享');return}
   try{if(navigator.share){await navigator.share({title:S.name,text:S.name+' 的數位名片',url:u});return}}catch(e){return}
   try{await navigator.clipboard.writeText(u);toast('已複製最新版名片連結')}catch(e){toast('無法複製連結')}
@@ -880,6 +884,7 @@ $('#qr').onclick=async()=>{
   modal(w+'<div id="qrb"></div><p style="font-size:13px;color:#6a6f7a">掃描即可開啟最新版名片</p>');
   try{
     const u=await shareUrl();
+    if(unpublished()){$('#qrb').innerHTML='<p style="font-size:13px;color:#c2410c">你有尚未發佈的修改，請先按「下載發佈版 HTML」並上傳覆蓋 index.html，再產生 QR Code。</p>';return}
     if(u.length>2400){$('#qrb').innerHTML='<p style="font-size:13px;color:#c2410c">目前圖片與名片資料較多，分享網址太長，無法放入 QR Code。請使用右下角分享按鈕傳送完整連結，或下載發佈版 HTML。</p>';return}
     new QRCode($('#qrb'),{text:u,width:280,height:280,correctLevel:QRCode.CorrectLevel.L});
   }catch(e){
