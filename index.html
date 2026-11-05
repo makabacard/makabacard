@@ -614,7 +614,7 @@ function form(){
   const ac=(id,icon,title,sum,body)=>{const o=acc[tab]===id;return `<section class="ac${o?' open':''}"><button class="ach" data-ac="${tab}:${id}"><span class="aci">${icon}</span><span class="act"><b>${title}</b><small>${esc(sum)}</small></span><i class="chev"></i></button>${o?`<div class="acb">${body}</div>`:''}</section>`};
   
   /* ===== 圖片網址輸入與預覽框 ===== */
-  const slot=(l,p,v,hint)=>`<div class="slot"><div class="sth">${v?`<img src="${esc(v)}" alt="">`:'<em>尚未設定圖片</em>'}</div><div class="sti"><b>${l}</b><small>${hint}</small><label class="hint">從裝置選擇圖片<input type="file" accept="image/*" data-img="${p}"></label><input type="url" placeholder="或貼上圖片網址 https://..." data-p="${p}" value="${esc(v)}"><span class="fl">${v?`<button class="gb" data-crop="${p}">裁切</button><button class="gb del" data-rm="${p}">移除圖片</button>`:''}</span></div></div>`;
+  const slot=(l,p,v,hint)=>`<div class="slot"><div class="sth">${v?`<img src="${esc(v)}" alt="">`:'<em>尚未設定圖片</em>'}</div><div class="sti"><b>${l}</b><small>${hint}</small><label class="hint">從裝置選擇圖片<input type="file" accept="image/*" data-img="${p}"></label><span class="fl">${v?`<button class="gb" data-crop="${p}">裁切</button><button class="gb del" data-rm="${p}">移除圖片</button>`:''}</span></div></div>`;
 
   const LB={hdr:{none:'無頭部',cover:'封面圖',band:'色塊',photo:'照片背景',photoc:'照片卡片',photofull:'滿版照片',ptarch:'拱形人像',ptside:'側邊人像',ptpola:'拍立得',ptring:'圓環人像'},lay:{left:'靠左',center:'置中',right:'靠右'},av:{circle:'圓形',rounded:'圓角',square:'方形',blob:'水滴'},bgm:{solid:'純色',gradient:'光暈',image:'背景圖'},font:{sans:'黑體',serif:'明體'},lyt:{list:'條列',grid:'磚塊'},lnk:{solid:'淺底',fill:'填滿',outline:'線框',glass:'玻璃'},shape:{rounded:'圓角',pill:'膠囊',square:'方角'},box:{solid:'實心',outline:'線框',flat:'無框',glass:'玻璃',shadow:'陰影'}};
   const mv=i=>`<button class="mb" data-bm="${i},-1"${i===0?' disabled':''} aria-label="上移">↑</button><button class="mb" data-bm="${i},1"${i===S.blocks.length-1?' disabled':''} aria-label="下移">↓</button>`;
@@ -623,14 +623,14 @@ function form(){
     if(sysM)return `<div class="rw sys"><div class="rh"><span class="ri">${sysM[0]}</span><span class="rt2"><b>${sysM[1]}</b><small>${sysM[3]}</small></span><button class="gb sw3${S[sysM[2]]?' on':''}" data-tg="${sysM[2]}">${S[sysM[2]]?'顯示':'隱藏'}</button><span class="mvs">${mv(i)}</span></div></div>`;
     const x=xb===i,isL=b.k==='link',nm=isL?(b.label||(TYPES[b.type]||TYPES.other)[0]):(b.title||'圖文區塊'),sm=isL?(b.url||'尚未填網址'):(b.body||'').replace(/\n/g,' ').slice(0,18);
     const ic=isL?ico((TYPES[b.type]||TYPES.other)[1],17):'文';
-    return `<div class="rw${x?' x':''}"><div class="rh"><button class="rt" data-bx="${i}"><span class="ri">${ic}</span><span class="rt2"><b>${esc(nm)}</b><small>${esc(sm)}</small></span><i class="chev"></i></button><span class="mvs">${mv(i)}</span></div>${x?`<div class="rb">${isL?`<label>類型<select data-p="blocks.${i}.type">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}"${b.type===k?' selected':''}>${v[0]}</option>`).join('')}</select></label>${inp('名稱',`blocks.${i}.label`,b.label)}${inp('網址／號碼',`blocks.${i}.url`,b.url)}<label>自訂圖示網址<input type="url" placeholder="貼上圖示網址 https://..." data-p="blocks.${i}.icon" value="${esc(b.icon)}"></label>`:`${inp('標題',`blocks.${i}.title`,b.title)}<label>內容<textarea data-p="blocks.${i}.body">${esc(b.body)}</textarea></label>`}<div class="fl"><button class="gb" data-bc="${i}">複製</button><button class="gb del" data-bd="${i}">刪除</button></div></div>`:''}</div>`;
+    return `<div class="rw${x?' x':''}"><div class="rh"><button class="rt" data-bx="${i}"><span class="ri">${ic}</span><span class="rt2"><b>${esc(nm)}</b><small>${esc(sm)}</small></span><i class="chev"></i></button><span class="mvs">${mv(i)}</span></div>${x?`<div class="rb">${isL?`<label>類型<select data-p="blocks.${i}.type">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}"${b.type===k?' selected':''}>${v[0]}</option>`).join('')}</select></label>${inp('名稱',`blocks.${i}.label`,b.label)}${inp('網址／號碼',`blocks.${i}.url`,b.url)}<label class="hint">自訂圖示（從裝置選擇圖片）<input type="file" accept="image/*" data-img="blocks.${i}.icon"></label>${b.icon?`<div class="fl"><button class="gb del" data-rm="blocks.${i}.icon">移除圖示</button></div>`:''}`:`${inp('標題',`blocks.${i}.title`,b.title)}<label>內容<textarea data-p="blocks.${i}.body">${esc(b.body)}</textarea></label>`}<div class="fl"><button class="gb" data-bc="${i}">複製</button><button class="gb del" data-bd="${i}">刪除</button></div></div>`:''}</div>`;
   };
   const AL3=[['left','靠左'],['center','置中'],['right','靠右']],ALN={left:'靠左',center:'置中',right:'靠右'};
   const alp=(k,l)=>`${sl(l)}<div class="chs c3">${AL3.map(([v,n])=>`<button class="ch${(k==='all'?Object.values(S.al).every(x=>x===v):S.al[k]===v)?' on':''}" data-al="${k}|${v}">${svgi('al',v)}<span>${n}</span></button>`).join('')}</div>`;
   let h='';
   if(tab===0){
     const brandSum=[S.avatar&&'頭像',S.logo&&'LOGO',S.bg&&'封面',S.pbg&&'背景圖'].filter(Boolean).join('・')||'尚未設定圖片';
-    h=ac('brand','🖼️','品牌形象',brandSum,`<div class="slots">${slot('頭像／人像照','avatar',S.avatar,'請貼上公開的圖片網址')}${slot('品牌 LOGO','logo',S.logo,'顯示在名片頁尾')}${slot('封面圖','bg',S.bg,'封面圖／色塊頭部使用')}${slot('頁面背景圖','pbg',S.pbg,'選填，鋪滿整個頁面')}</div>
+    h=ac('brand','🖼️','品牌形象',brandSum,`<div class="slots">${slot('頭像／人像照','avatar',S.avatar,'從裝置選擇圖片')}${slot('品牌 LOGO','logo',S.logo,'顯示在名片頁尾')}${slot('封面圖','bg',S.bg,'封面圖／色塊頭部使用')}${slot('頁面背景圖','pbg',S.pbg,'選填，鋪滿整個頁面')}</div>
     ${S.avatar?rng('頭像上下位置','ay',S.ay):''}${(photo&&(S.avatar||S.bg))||(!photo&&S.bg&&/^(cover|band)$/.test(S.hdr))?rng(photo?'照片上下位置（調整臉的位置）':'封面上下位置','fy',S.fy):''}`)
     +ac('info','📝','基本資料',[S.name,S.title].filter(Boolean).join(' · ')||'尚未填寫',`${inp('姓名','name',S.name)}${inp('職稱','title',S.title)}${inp('公司／品牌','company',S.company)}${inp('一句話簡介','tag',S.tag)}<label>個人簡介<textarea data-p="bio">${esc(S.bio)}</textarea></label>`)
     +ac('contact','📞','聯絡資訊',[S.phone,S.email,S.site].filter(Boolean).join(' · ')||'尚未填寫',`${inp('電話','phone',S.phone)}${inp('Email','email',S.email)}${inp('地址','addr',S.addr)}${inp('統一編號','taxId',S.taxId)}${inp('網站','site',S.site,'url')}`)
@@ -639,22 +639,22 @@ function form(){
   }
   else if(tab===1){
     const TC={all:'全部',pt:'人像',biz:'商務',fun:'創意'},lst=tcat==='all'?[...TCATS.pt,...TCATS.biz,...TCATS.fun]:TCATS[tcat];
-    h=`${sec('版型','套用後會保留你的文字內容。人像版型請到「內容」設定照片網址。')}
+    h=`${sec('版型','套用後會保留你的文字內容。人像版型請到「內容」設定照片。')}
   <div class="tcs">${Object.entries(TC).map(([k,n])=>`<button class="tc${tcat===k?' on':''}" data-tc="${k}" aria-pressed="${tcat===k}">${n}</button>`).join('')}</div>
   <div class="tp">${lst.map(k=>`<button data-tpl="${k}" aria-pressed="${S.tpl===k}" class="${S.tpl===k?'on':''}">${mini(k)}${TPL[k].n}</button>`).join('')}</div>
-  ${PH(S.hdr)&&!S.avatar?`<div class="nt"><b>還沒有人像照片</b><span>目前顯示的是示意剪影，貼上照片網址後會自動套進這個版型。</span><button class="gb main" data-go="0:brand">設定照片網址</button></div>`:''}
+  ${PH(S.hdr)&&!S.avatar?`<div class="nt"><b>還沒有人像照片</b><span>目前顯示的是示意剪影，上傳照片後會自動套進這個版型。</span><button class="gb main" data-go="0:brand">設定照片</button></div>`:''}
   ${sec('配色方案','一鍵套用整組顏色；想單獨改某一項，到「設計」分頁對應物件旁邊調整。')}<div class="sw">${PRESETS.map((p,i)=>`<button data-pre="${i}" class="${p[0]===S.c.bg&&p[1]===S.c.sf&&p[2]===S.c.fg&&p[3]===S.c.ac?'on':''}" aria-label="配色 ${i+1}" style="background:linear-gradient(135deg,${p[0]} 50%,${p[3]} 50%)"></button>`).join('')}</div>`;
   }
   else if(tab===2){
     h=ac('hdr','👤','頭部',`${LB.hdr[S.hdr]}${fixLay?'':' · '+LB.lay[S.lay]}${photo?'':' · '+LB.av[S.av]+'頭像'}`,
       `${sl('一般頭部')}${pick('hdr','hdr',[['none','無'],['cover','封面圖'],['band','色塊']])}${sl('人像頭部')}${pick('hdr','hdr',[['photo','照片背景'],['photoc','照片卡片'],['photofull','滿版照片'],['ptarch','拱形人像'],['ptside','側邊人像'],['ptpola','拍立得'],['ptring','圓環人像']])}
-      ${photo&&!S.avatar?`<p class="hint" style="margin-top:10px;color:#c2410c">要用你的人像：請先設定照片網址。</p><button class="gb" data-go="0:brand">到「內容」設定照片網址</button>`:''}
+      ${photo&&!S.avatar?`<p class="hint" style="margin-top:10px;color:#c2410c">要用你的人像：請先設定照片。</p><button class="gb" data-go="0:brand">到「內容」設定照片</button>`:''}
       ${fixLay?'':`${sl('文字排版')}${pick('lay','lay',[['left','靠左'],['center','置中'],['right','靠右']])}`}
       ${photo?'':`${sl('頭像形狀')}${pick('av','av',[['circle','圓形'],['rounded','圓角'],['square','方形'],['blob','水滴']],4)}${rng('頭像大小','avs',S.avs,56,140)}`}`)
     +ac('bg','🌄','頁面背景',`${LB.bgm[S.bgm]} · ${S.c.bg.toUpperCase()}`,
       `${sl('背景樣式')}${pick('bgm','bgm',[['solid','純色'],['gradient','頂部光暈'],['image','背景圖']])}
       ${sl('背景顏色')}${colr('背景色','bg')}
-      <p class="hint" style="margin:10px 0 8px">背景圖預設用範本內建圖案，會跟著配色變化。${S.pbg?'目前使用你設定的圖案網址。':''}</p><button class="gb" data-go="0:brand">${S.pbg?'更換':'設定'}自訂背景圖網址</button>`)
+      <p class="hint" style="margin:10px 0 8px">背景圖預設用範本內建圖案，會跟著配色變化。${S.pbg?'目前使用你設定的背景圖。':''}</p><button class="gb" data-go="0:brand">${S.pbg?'更換':'設定'}自訂背景圖</button>`)
     +ac('txt','🔤','文字',`標題 ${FONTS[S.font].n}・內文 ${FONTS[S.bf].n}`,
       `${sl('標題字體（姓名、區塊標題）')}${fpick('font')}${sl('內文字體')}${fpick('bf')}<p class="hint" style="margin-top:10px">字體會在選用時才載入，需連網；離線時自動改用系統字體。</p>${sl('文字顏色')}${colr('文字色','fg')}`)
     +ac('lnk','🔗','連結與按鈕',`${LB.lyt[S.lyt]} · ${LB.lnk[S.lnk]} · ${LB.shape[S.shape]}`,
@@ -672,7 +672,12 @@ function form(){
   <p class="hint">資料存在這個瀏覽器裡。換電腦或清除瀏覽器資料前，請先備份。</p>
   <div class="fl"><button class="gb" id="bk">下載備份檔</button></div>
   
-  <label style="margin-top:10px">還原備份<input type="file" accept=".json,application/json" id="rt"></label>`}
+  <label style="margin-top:10px">還原備份<input type="file" accept=".json,application/json" id="rt"></label>
+  <h4>圖片空間（GitHub）</h4>
+  <p class="hint">設定後，上傳的圖片會自動存到你的 GitHub repository，分享連結只帶圖片網址，任何通訊軟體都能顯示。repository 必須是公開的。</p>
+  <label>Repository（帳號/repo名稱）<input id="gr" value="${esc((ghCfg()||{}).repo||ghDef())}" placeholder="帳號/repo名稱" autocomplete="off"></label>
+  <label>Token<input id="gt" type="password" placeholder="${ghCfg()?'已儲存（留空則不變更）':'貼上 GitHub token'}" autocomplete="off"></label>
+  <div class="fl"><button class="gb" id="ghs">儲存並測試</button><button class="gb" id="ghm">上傳現有圖片</button></div>`}
   $('#form').innerHTML=h;$('#form').scrollTop=st;
 }
 
@@ -759,7 +764,7 @@ function openCrop(key,src){
     st.onpointerup=st.onpointercancel=e=>{pts.delete(e.pointerId)};
     st.onwheel=e=>{e.preventDefault();const r=st.getBoundingClientRect();setZ(z*(e.deltaY<0?1.08:1/1.08),e.clientX-r.left,e.clientY-r.top)};
     $('#cno').onclick=()=>{cropping=false;$('#modal').hidden=true};
-    $('#cok').onclick=()=>{
+    $('#cok').onclick=async()=>{
       try {
         const sw=W/s,sh=H/s,sx=Math.max(0,Math.min(iw-sw,-ox/s)),sy=Math.max(0,Math.min(ih-sh,-oy/s));
         const sc=Math.min(1,mxs/Math.max(sw,sh)),cw=Math.max(1,Math.round(sw*sc)),ch=Math.max(1,Math.round(sh*sc));
@@ -768,7 +773,12 @@ function openCrop(key,src){
         if(!png){cx.fillStyle='#fff';cx.fillRect(0,0,cw,ch)}
         cx.drawImage(im,sx,sy,sw,sh,0,0,cw,ch);
         let out=png?cv.toDataURL('image/png'):cv.toDataURL('image/jpeg',.85);
-        const[o,k]=walk(key);o[k]=out;
+        const[o,k]=walk(key);
+        if(ghCfg()){
+          $('#cok').disabled=true;toast('圖片上傳到 GitHub 中…',60000);
+          try{out=await ghUpload(out,key);toast('圖片已上傳')}catch(er){toast('GitHub 上傳失敗：'+er.message+'（圖片先存在本機，不會出現在分享連結）',5000)}
+        }
+        o[k]=out;
         if(key==='pbg')S.bgm='image';
       } catch(e) {
         toast('圖片來源不允許跨域裁切，已直接使用原網址');
@@ -822,11 +832,13 @@ $('#sheet').addEventListener('click',async e=>{
   if(d.ac){const[t,id]=d.ac.split(':');acc[t]=acc[t]===id?'':id;form();const el=$('#form [data-ac="'+d.ac+'"]');if(el&&acc[t])el.scrollIntoView({block:'start'});return}
   if(d.bx!==undefined){xb=xb===+d.bx?-1:+d.bx;form();return}
   if(d.go){const[t,id]=d.go.split(':');tab=+t;acc[t]=id;form();$('#form').scrollTop=0;return}
+  if(b.id==='ghs'){ghSave();return}
+  if(b.id==='ghm'){ghMigrate();return}
   if(b.id==='bk'){download((S.name||'card')+'-備份.json',JSON.stringify(S),'application/json');toast('已下載備份檔');return}
   if(b.id==='cp'){viewChangePw();return}
   if(b.id==='pub'){exportPub();return}
   if(d.crop){const[o,k]=walk(d.crop);if(o[k])openCrop(d.crop,o[k]);return}
-  if(d.tpl){const kp=S.pbg;Object.assign(S,base(d.tpl));S.pbg=kp;if(kp)S.bgm='image';toast('已套用「'+TPL[d.tpl].n+'」'+(PH(S.hdr)&&!S.avatar?'，貼上照片網址就會看到人像':''),2600)}
+  if(d.tpl){const kp=S.pbg;Object.assign(S,base(d.tpl));S.pbg=kp;if(kp)S.bgm='image';toast('已套用「'+TPL[d.tpl].n+'」'+(PH(S.hdr)&&!S.avatar?'，貼上照片就會看到人像':''),2600)}
   if(d.pre){const p=PRESETS[+d.pre];S.c={bg:p[0],sf:p[1],fg:p[2],ac:p[3]}}
   if(d.o){const[k,v]=d.o.split('|');S[k]=v}
   if(d.tg)S[d.tg]=!S[d.tg];
@@ -842,12 +854,53 @@ $('#sheet').addEventListener('click',async e=>{
   save();form();render();
 });
 
+/* ===== GitHub 圖片空間 ===== */
+function ghDef(){const h=location.hostname,m=h.match(/^([^.]+)\.github\.io$/);if(!m)return'';const seg=location.pathname.split('/').filter(Boolean)[0];return m[1]+'/'+(seg&&!/\.html?$/i.test(seg)?seg:m[1]+'.github.io')}
+function ghCfg(){try{const c=JSON.parse(store.get(KEY+'_gh')||'{}');return c.token&&c.repo?c:null}catch(_){return null}}
+async function ghUpload(dataUrl,key){
+  const c=ghCfg();if(!c)throw new Error('尚未設定 GitHub');
+  const ext=dataUrl.startsWith('data:image/png')?'png':'jpg';
+  const name='img/'+String(key).replace(/[^\w-]/g,'_')+'-'+Date.now().toString(36)+Math.random().toString(36).slice(2,5)+'.'+ext;
+  const r=await fetch('https://api.github.com/repos/'+c.repo+'/contents/'+name,{method:'PUT',headers:{Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:'upload '+name,content:dataUrl.split(',')[1]})});
+  if(!r.ok){let m='';try{m=(await r.json()).message}catch(_){}throw new Error(r.status+' '+m)}
+  const j=await r.json();
+  return j.content.download_url;
+}
+const localImgs=()=>{const a=[];const sc=v=>{if(Array.isArray(v))v.forEach((x,i)=>{typeof x==='string'&&x.startsWith('data:image')?a.push([v,i]):sc(x)});else if(v&&typeof v==='object')for(const k in v){const x=v[k];typeof x==='string'&&x.startsWith('data:image')?a.push([v,k]):sc(x)}};sc(S);return a};
+async function ghSave(){
+  const repo=($('#gr').value||'').trim().replace(/^https?:\/\/github\.com\//,'').replace(/\/+$/,'');
+  const old=ghCfg()||{},tk=($('#gt').value||'').trim()||old.token||'';
+  if(!/^[\w.-]+\/[\w.-]+$/.test(repo)){toast('Repository 格式請填「帳號/repo名稱」');return}
+  if(!tk){toast('請貼上 GitHub token');return}
+  toast('驗證中…',30000);
+  try{
+    const r=await fetch('https://api.github.com/repos/'+repo,{headers:{Authorization:'Bearer '+tk,Accept:'application/vnd.github+json'}});
+    if(!r.ok)throw new Error(r.status===404?'找不到 repository 或 token 無權限':r.status===401?'token 無效':String(r.status));
+    const j=await r.json();
+    if(j.private){toast('此 repository 是私人的，圖片無法公開顯示，請改用公開 repository',5000);return}
+    if(j.permissions&&!j.permissions.push){toast('token 沒有寫入權限（需要 Contents: Read and write）',5000);return}
+    store.set(KEY+'_gh',JSON.stringify({repo,token:tk}));
+    toast('已設定完成，之後上傳的圖片會自動存到 GitHub',3500);form();
+  }catch(e){toast('驗證失敗：'+e.message,5000)}
+}
+async function ghMigrate(){
+  if(!ghCfg()){toast('請先儲存 GitHub 設定');return}
+  const it=localImgs();if(!it.length){toast('目前沒有需要上傳的圖片');return}
+  let n=0;
+  try{
+    for(const [o,k] of it){toast('上傳圖片 '+(n+1)+'/'+it.length+'…',60000);o[k]=await ghUpload(o[k],k);n++}
+    save();form();render();toast('已上傳 '+n+' 張圖片，現在可以分享含圖片的連結',4000);
+  }catch(e){if(n){save();form();render()}toast('上傳失敗：'+e.message+'（已完成 '+n+' 張）',5000)}
+}
+
 /* ===== 網址資料打包 ===== */
 const IMGK=['avatar','logo','bg','pbg'];
 const b64u=u8=>{let s='';u8.forEach(c=>s+=String.fromCharCode(c));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
 const unb64u=t=>Uint8Array.from(atob(t.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
 async function packData(){
   const o=JSON.parse(JSON.stringify(S));delete o._ts;
+  const strip=v=>{if(Array.isArray(v))v.forEach((x,i)=>{if(typeof x==='string'&&x.startsWith('data:'))v[i]='';else strip(x)});else if(v&&typeof v==='object')for(const k in v){const x=v[k];if(typeof x==='string'&&x.startsWith('data:'))v[k]='';else strip(x)}};
+  strip(o);
   const a=acct();if(a.h)o._acct=a;
   const cs=new Blob([new TextEncoder().encode(JSON.stringify(o))]).stream().pipeThrough(new CompressionStream('deflate-raw'));
   return b64u(new Uint8Array(await new Response(cs).arrayBuffer()));
@@ -856,13 +909,17 @@ async function unpackData(t){
   const ds=new Blob([unb64u(t)]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
   return JSON.parse(await new Response(ds).text());
 }
-async function shareUrl(){return location.href.split('#')[0]+'#d='+await packData()}
+const cleanUrl=()=>location.href.split('#')[0];
+const hasPub=()=>!!window.__PUB__;
+const unpublished=()=>hasPub()&&S._ts&&S._ts>(window.__PUB__._ts||0);
+async function shareUrl(){return hasPub()&&!unpublished()?cleanUrl():cleanUrl()+'#d='+await packData()}
 
 (async()=>{
   const m=location.hash.match(/^#d=([\w-]+)/);if(!m)return;
   try{
     const o=await unpackData(m[1]);
     if(o._acct){if(!acct().h)setAcct(o._acct);delete o._acct}
+    const pb=window.__PUB__;if(pb)IMGK.forEach(k=>{if(!o[k]&&pb[k])o[k]=pb[k]});
     load(o);
     render();
   }catch(e){}
@@ -871,16 +928,16 @@ async function shareUrl(){return location.href.split('#')[0]+'#d='+await packDat
 $('#sh').onclick=async()=>{
   if(location.protocol==='file:'){toast('請先把名片放到網站上，再分享連結');return}
   let u;try{u=await shareUrl()}catch(e){toast('分享資料打包失敗，請改用「下載發佈版 HTML」分享');return}
-  if(u.length>180000){toast('圖片資料太大，請先裁切／縮小圖片後再分享');return}
+  if(u.includes('#d=')&&localImgs().length)toast('有圖片尚未上傳到 GitHub，不會出現在連結中（設定頁可一鍵上傳）',3500);
   try{if(navigator.share){await navigator.share({title:S.name,text:S.name+' 的數位名片',url:u});return}}catch(e){return}
-  try{await navigator.clipboard.writeText(u);toast('已複製最新版名片連結')}catch(e){toast('無法複製連結')}
+  try{await navigator.clipboard.writeText(u);toast(u.includes('#d=')?'已複製連結（文字內容最新；圖片不含在連結內）':'已複製名片連結',3200)}catch(e){toast('無法複製連結')}
 };
 $('#qr').onclick=async()=>{
   const w=location.protocol==='file:'?'<p style="font-size:12px;color:#c2410c;margin-bottom:10px">目前是本機檔案，請先放到網站上，再用網站網址產生 QR。</p>':'';
   modal(w+'<div id="qrb"></div><p style="font-size:13px;color:#6a6f7a">掃描即可開啟最新版名片</p>');
   try{
     const u=await shareUrl();
-    if(u.length>2400){$('#qrb').innerHTML='<p style="font-size:13px;color:#c2410c">目前圖片與名片資料較多，分享網址太長，無法放入 QR Code。請使用右下角分享按鈕傳送完整連結，或下載發佈版 HTML。</p>';return}
+    if(u.length>2400){$('#qrb').innerHTML='<p style="font-size:13px;color:#c2410c">名片文字內容較多，網址太長，無法放入 QR Code。請使用右下角分享按鈕傳送連結。</p>';return}
     new QRCode($('#qrb'),{text:u,width:280,height:280,correctLevel:QRCode.CorrectLevel.L});
   }catch(e){
     $('#qrb').textContent='QR Code 產生失敗，請改用分享按鈕傳送完整連結。';
